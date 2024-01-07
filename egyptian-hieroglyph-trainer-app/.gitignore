@@ -22,9 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
+**/node_modules
 .DS_STORE
-node_modules
+**/node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
