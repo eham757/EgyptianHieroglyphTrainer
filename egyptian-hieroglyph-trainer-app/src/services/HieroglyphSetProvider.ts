@@ -2,7 +2,34 @@ const HieroglyphSetProvider = {
     getRandomUniliteralSign: () => {
         const signs = Object.keys(uniliteralSigns)
         const randomIndex = Math.floor(Math.random() * signs.length)
-        return signs[randomIndex]
+        return signs[randomIndex];
+    },
+
+    getUniliteralSignTransliteration: (uniliteral: string) => {
+        return uniliteralSigns[uniliteral];
+    },
+
+    getRandomUnilitralSignTransliteration: () => {
+        const signs = Object.values(uniliteralSigns)
+        const randomIndex = Math.floor(Math.random() * signs.length)
+        return signs[randomIndex];
+    },
+
+    getRandomUniliteralPair: () => {
+        const randomIndex = Math.floor(Math.random() * Object.keys(uniliteralSigns).length);
+        return  {sign: Object.keys(uniliteralSigns)[randomIndex], transliteration: Object.values(uniliteralSigns)[randomIndex]};
+    },
+
+    getRandomTransliterationExcludingSpecifiedCharacters: (excluded:string[]) => {
+        const signs = Object.values(uniliteralSigns).filter(sign => !excluded.includes(sign));
+        const randomIndex = Math.floor(Math.random() * signs.length)
+        return signs[randomIndex];
+    },
+
+    getFixedAmountOfRandomTransliterationsExcludingSpecifiedCharacters: (amount: number, excluded:string[]) => {
+        const signs = Object.values(uniliteralSigns).filter(sign => !excluded.includes(sign));
+        const randomIndexes = Array.from({length: amount}, () => Math.floor(Math.random() * signs.length));
+        return randomIndexes.map(index => signs[index]);
     },
 }
 
