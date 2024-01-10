@@ -1,6 +1,6 @@
 import ListGroup from "./ListGroup"
 
-interface QuizQuestionProps {
+interface QuizProps {
     question: string
     answers: string[]
     correctAnswer: string
@@ -8,7 +8,7 @@ interface QuizQuestionProps {
 
 
 
-const QuizQuestion = ({question, answers, correctAnswer,}: QuizQuestionProps) => {
+const Quiz = ({question, answers, correctAnswer,}: QuizProps) => {
 
     const onAnswerClick = (answer: string) => {
         if (answer === correctAnswer) {
@@ -27,4 +27,4 @@ const QuizQuestion = ({question, answers, correctAnswer,}: QuizQuestionProps) =>
     )
 }
 
-export default QuizQuestion
+export default Quiz

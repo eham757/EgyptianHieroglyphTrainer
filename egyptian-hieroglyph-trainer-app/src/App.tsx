@@ -1,17 +1,20 @@
-import ListGroup from "./components/ListGroup";
+import Quiz from "./components/Quiz";
 import HieroglyphSetProvider from "./services/HieroglyphSetProvider"
 
 function App() {
 
-  const { sign, transliteration } = HieroglyphSetProvider.getRandomUniliteralPair();
+    const { sign, transliteration } = HieroglyphSetProvider.getRandomUniliteralPair();
 
-  return (
-    <>
-    <h1>{sign}</h1>
-    <h1>{transliteration}</h1>
-    <ListGroup items={['hello', 'Are you still there?', 'Activated']} onItemClick={(item) => console.log(item)} />
-    </>
-  )
+    const answers: string[] = HieroglyphSetProvider.getFixedAmountOfRandomTransliterationsExcludingSpecifiedCharacters(3, [transliteration]);
+    answers.push(transliteration);
+    answers.sort(() => Math.random() - 0.5); // Shuffle the answers
+
+
+    return (
+        <>
+        <Quiz question={sign} answers={answers} correctAnswer={transliteration}  />
+        </>
+    )
 }
 
 export default App
