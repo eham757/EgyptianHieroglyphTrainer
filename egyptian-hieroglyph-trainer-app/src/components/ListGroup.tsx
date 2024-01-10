@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { useState } from "react";
 
 interface ListGroupProps {
     items: string[],
@@ -6,10 +6,12 @@ interface ListGroupProps {
 }
 
 const ListGroup = ({items, onItemClick}: ListGroupProps) => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(-1);
     return (
         <ul className="list-group">
             {items.map((item, index) => {
-                return <li className="list-group-item" key={index} onClick={() => {
+                return <li className={index === selectedIndex ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'} key={index} onClick={() => {
+                    setSelectedIndex(index)
                     onItemClick(item)
                 }}>{item}</li>
             })}

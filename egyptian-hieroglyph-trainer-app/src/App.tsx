@@ -12,7 +12,10 @@ function App() {
 
     return (
         <>
-        <Quiz question={sign} answers={answers} correctAnswer={transliteration}  />
+            <div className="container text-center">
+                <Quiz question={sign} answers={answers} correctAnswer={transliteration}  />
+            </div>
+            
         </>
     )
 }
