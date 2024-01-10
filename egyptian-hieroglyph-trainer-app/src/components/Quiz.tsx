@@ -13,8 +13,10 @@ interface QuizProps {
 const Quiz = ({question, answers, correctAnswer}: QuizProps) => {
 
     const [answerValid, setAnswerValid] = useState<boolean>(false);
+    const [answered, setAnswered] = useState<boolean>(false);
 
     const onAnswerClick = (answer: string) => {
+        setAnswered(true);
         if (answer === correctAnswer) {
             setAnswerValid(true);
         } else {
@@ -23,9 +25,19 @@ const Quiz = ({question, answers, correctAnswer}: QuizProps) => {
     
     }
 
+    const titleColor = () => {
+        if (answerValid && answered) {
+            return 'text-success';
+        } else if (!answerValid && answered) {
+            return 'text-danger';
+        } else {
+            return 'text-primary';
+        }
+    };
+
     return (
         <>
-        <h1 className={answerValid ? 'correct': 'false'}>{question} {answerValid ? 'correct' : 'incorrect'}</h1>
+        <h1 className={titleColor()}>{question}</h1>
         <ListGroup items={answers} onItemClick={(item) => onAnswerClick(item)} />
         </>
     )
